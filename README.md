@@ -45,7 +45,7 @@ npm run test
 -   Add more intuitive error messages on user input for usability.
 -   Add a "success" snackbar after the user successfully updates the chart for usability.
 -   Possibly add the fill colors for profit/loss. I left this out for visual simplicity.
--   Feature: Provide the Stock's option chain as user selectable data instead of requiring them to manually type they input.
+-   Feature: Provide the Stock's option chain as user selectable data instead of requiring them to manually type the input.
 -   Complexity: Overlay the charts on top of each other. May need a different plugin because the current line chart.js requires each line to have the same x-axis points.
 
 # React + TypeScript + Vite
