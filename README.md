@@ -8,6 +8,11 @@
 
 -   This options strategy page shows the line chart for each of the options input.
 -   Initial input data comes from the mock `sampleData`.
+-   Green line charts signify a bullish to neutral bias.
+-   Red line charts signify a bearish to neutral bias.
+-   Max Loss is calculated for going long. Profit is essentially unlimited.
+-   Max Profit is calculated for going short. Loss is essentially unlimited.
+-   Break even price is calculated for the underlying stock.
 -   Click "Edit this option" to modify the line chart.
 
 ## Setup
@@ -40,7 +45,6 @@ npm run test
 -   Add more intuitive error messages on user input for usability.
 -   Add a "success" snackbar after the user successfully updates the chart for usability.
 -   Possibly add the fill colors for profit/loss. I left this out for visual simplicity.
--   Control the float decimals on the profit/loss. The calculation funtion sometimes produces large decimals that the chart can't plot.
 -   Feature: Provide the Stock's option chain as user selectable data instead of requiring them to manually type they input.
 -   Complexity: Overlay the charts on top of each other. May need a different plugin because the current line chart.js requires each line to have the same x-axis points.
 

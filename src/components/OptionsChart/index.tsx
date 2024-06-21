@@ -1,11 +1,11 @@
+import { useContext, useEffect } from 'react'
+import { OptionsChartContext } from '../../context/OptionsChartProvider'
 import LineChart from './LineChart'
+import EditOptionsDialog from './EditOptionsDialog'
+import { Box, Button, Paper, Stack, Typography } from '@mui/material'
 import { sampleData } from './data'
 import { calculateOptionRiskReward } from '../../utils/calculateOptionRiskReward'
 import { LineChartData } from '../../utils/model'
-import { Box, Button, Paper } from '@mui/material'
-import EditOptionsDialog from './EditOptionsDialog'
-import { useContext, useEffect } from 'react'
-import { OptionsChartContext } from '../../context/OptionsChartProvider'
 
 export interface ChartInstance {
     chartData: LineChartData
@@ -84,6 +84,7 @@ const OptionsChart = () => {
             chartData: {
                 labels: option.labels,
                 datasets: option.datasets,
+                calcs: option.calcs,
             },
             chartOptions: chartInstanceInit.chartOptions,
         }
@@ -116,6 +117,14 @@ const OptionsChart = () => {
                 >
                     {allOptions.map((chartInstance) => {
                         const tempId = chartInstance?.chartData?.datasets[0]?.id
+                        const premVal = chartInstance?.chartData?.calcs?.prem
+                        const breakEvenVal =
+                            chartInstance?.chartData?.calcs?.breakEvenPrice
+                        let maxString = ''
+                        maxString =
+                            premVal && premVal >= 0
+                                ? `Profit: $${premVal}`
+                                : `Loss: $${premVal}`
 
                         return (
                             <Box
@@ -127,14 +136,24 @@ const OptionsChart = () => {
                             >
                                 <LineChart {...chartInstance} />
                                 <Box sx={{ padding: '1rem 0', width: '100%' }}>
-                                    <Button
-                                        variant="contained"
-                                        onClick={() =>
-                                            handleEditOptionsDialogOpen(tempId)
-                                        }
+                                    <Stack
+                                        direction="row"
+                                        sx={{ justifyContent: 'space-between' }}
                                     >
-                                        Edit this option
-                                    </Button>
+                                        <Typography sx={{ color: 'white' }}>
+                                            {`Max ${maxString}, Break Even Price: $${breakEvenVal}`}
+                                        </Typography>
+                                        <Button
+                                            variant="contained"
+                                            onClick={() =>
+                                                handleEditOptionsDialogOpen(
+                                                    tempId,
+                                                )
+                                            }
+                                        >
+                                            Edit this option
+                                        </Button>
+                                    </Stack>
                                 </Box>
                             </Box>
                         )

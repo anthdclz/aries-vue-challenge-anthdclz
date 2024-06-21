@@ -1,6 +1,7 @@
 export interface LineChartData {
     labels: number[]
     datasets: any[]
+    calcs?: { prem: number; breakEvenPrice: number }
 }
 
 export interface OptionItem {

@@ -17,7 +17,7 @@ export const calculateOptionRiskReward = (data: OptionItem): LineChartData => {
     const bearishRedFill = `rgba(${bearishRed}, 0.2)`
 
     // Bearish
-    let breakEvenPrice = strike_price + prem
+    let breakEvenPrice = Math.round((strike_price + prem) * 100) / 100
     let slope = -1
     let lineColor = bearishRedLine
     let fillColor = bearishRedFill
@@ -26,7 +26,7 @@ export const calculateOptionRiskReward = (data: OptionItem): LineChartData => {
         (long_short === 'short' && type === 'Put')
     ) {
         // Bullish
-        breakEvenPrice = strike_price - prem
+        breakEvenPrice = Math.round((strike_price - prem) * 100) / 100
         slope = 1
         lineColor = bullishGreenLine
         fillColor = bullishGreenFill
@@ -65,5 +65,9 @@ export const calculateOptionRiskReward = (data: OptionItem): LineChartData => {
         },
     ]
 
-    return { labels: newLabels, datasets: newDataSets }
+    return {
+        labels: newLabels,
+        datasets: newDataSets,
+        calcs: { prem, breakEvenPrice },
+    }
 }
