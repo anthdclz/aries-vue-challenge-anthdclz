@@ -31,7 +31,7 @@ npm run dev
 
 3. The page should launch automatically. If the page doesn't launch, find the **Local** path in the terminal and launch it manually in your web browser. Ie: Local: `http://localhost:5173/`
 
-## Testing with Vitest
+## Testing with Vitest 🐳
 
 -   Run tests with:
 
